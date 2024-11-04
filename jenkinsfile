@@ -3,7 +3,9 @@ pipeline{
 
     stages{
         stage("build"){
-            echo "=====executing A======="
+            steps {
+                echo "=====executing A======="
+            }
         }
     }
 }
