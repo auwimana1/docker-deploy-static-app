@@ -5,6 +5,7 @@ pipeline{
         stage("build image"){
             steps {
                 sh "docker build -t static_app/app:latest ."
+                sh "docker tag static_app:latest adelinau/static_app:latest"
                 sh "docker push adelinau/static_app:latest"
                 sh "docker rmi static_app"
             }
