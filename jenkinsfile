@@ -2,14 +2,22 @@ pipeline{
     agent any
 
     stages{
-        stage("build image"){
-            steps {
-                sh "docker build -t static_app/app:latest ."
-                sh "docker tag static_app/app:latest adelinau/static_app:latest"
-                sh "docker push adelinau/static_app:latest"
-                sh "docker rmi static_app"
+        // stage("fetch code" ){
+
+        // }
+        stage("build & push"){
+            steps{
+                script{
+                   // This step should not normally be used in your script. Consult the inline help for details.
+                    withDockerRegistry(credentialsId: 'dockerhub_id') {
+                        sh "docker build -t myapp:1.0.0 ."
+                        sh "docker tag myapp:1.0.0 adelinau/myapp:1.0.0"
+                        sh "docker push adelinau/myapp:1.0.0"
+                    }
+                }
             }
+                
         }
     }
-}
+ }
     
