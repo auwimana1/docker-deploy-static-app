@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    parameters {
+        string (name: 'VERSION', defaultValue: '1.0.0')
+    }
 
     stages{
         // stage("fetch code" ){
@@ -10,9 +13,9 @@ pipeline{
                 script{
                    // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'dockerhub_id') {
-                        sh "docker build -t myapp:1.0.0 ."
-                        sh "docker tag myapp:1.0.0 adelinau/myapp:1.0.0"
-                        sh "docker push adelinau/myapp:1.0.0"
+                        sh "docker build -t myapp:${params.VERSION} ."
+                        sh "docker tag myapp:${params.VERSION} adelinau/myapp:${params.VERSION}"
+                        sh "docker push adelinau/myapp:${params.VERSION}"
                     }
                 }
             }
