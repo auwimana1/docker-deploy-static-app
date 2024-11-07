@@ -33,7 +33,7 @@ pipeline{
 
                     sh "docker tag myapp:${params.VERSION} 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:latest"
 
-                    sh "docker push 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:cavilla:${params.VERSION}"
+                    sh "docker push 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:${params.VERSION}"
 
                     sh "docker push 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:latest"
 
