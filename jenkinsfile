@@ -27,6 +27,14 @@ pipeline{
                     // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'ecr:us-east-1:cavilla_car', url: 'https://557195342730.dkr.ecr.us-east-1.amazonaws.com/') {
                     echo "i am Ade"
+                    sh "docker build -t myapp:${params.VERSION} ."
+
+                    sh "docker tag myapp:${params.VERSION} 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:myapp:${params.VERSION}"
+
+                    sh "docker tag myapp:${params.VERSION} 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:latest"
+
+                    sh "docker push 557195342730.dkr.ecr.us-east-1.amazonaws.com/cavilla:latest"
+
                     }
             
                 } 
