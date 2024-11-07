@@ -8,7 +8,7 @@ pipeline{
         // stage("fetch code" ){
 
         // }
-        stage("build12"){
+        stage("build & pusj"){
             steps{
                 script{
                    // This step should not normally be used in your script. Consult the inline help for details.
@@ -21,6 +21,17 @@ pipeline{
             }
                 
         }
+        stage("build and push to ECR"){
+            steps{
+                script {
+                    // This step should not normally be used in your script. Consult the inline help for details.
+                    withDockerRegistry(credentialsId: 'ecr:us-east-1:cavilla_car', url: 'https://557195342730.dkr.ecr.us-east-1.amazonaws.com/') {
+                    echo "i am Ade"
+                    }
+            
+                } 
+            }
+        }
     }
- }
+}
     
